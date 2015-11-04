@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/jquery/jquery-1.8.3.js"></script>
+    <script language="javascript" type="text/javascript">
+        $(function(){
+            $(':checkbox').each(function(t,i){
+                //console.log($(i).attr("checked"));
+                alert($(i).attr("checked"));
+            });
+        });
+    </script>
+</head>
+<body>
+<input type="checkbox" checked="checked">checked
+<input type="checkbox" checked="false">false
+<input type="checkbox" checked="true">true
+<input type="checkbox" checked="none">none
+
+<form action="../indent/addIndent.do" name="frmPage" method="post">
+    <table>
+        <tr>
+            <td></td>
+            <td>编号</td>
+            <td>商品名</td>
+            <td>商品价格</td>
+            <td>数量</td>
+            <td>备注</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="isSelect" value="1"/></td>
+            <td><input type="text" name="isSelect" value="HD123"/></td>
+            <td><input type="text" name="name" value="手机"/></td>
+            <td><input type="text" name="price" value="1234"/></td>
+            <td><input type="text" name="count" value="20"/></td>
+            <td><input type="text" name="mark" value="你好"/></td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="isSelect" value="1"/></td>
+            <td><input type="text" name="isSelect" value="HD123"/></td>
+            <td><input type="text" name="name" value="手机"/></td>
+            <td><input type="text" name="price" value="1234"/></td>
+            <td><input type="text" name="count" value="20"/></td>
+            <td><input type="text" name="mark" value="你好"/></td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="isSelect" value="1"/></td>
+            <td><input type="text" name="isSelect" value="HD123"/></td>
+            <td><input type="text" name="name" value="手机"/></td>
+            <td><input type="text" name="price" value="1234"/></td>
+            <td><input type="text" name="count" value="20"/></td>
+            <td><input type="text" name="mark" value="你好" o/></td>
+        </tr>
+    </table>
+    <input type="button" name="submit1" value="提  交" onclick="changeValue();"/>
+</form>
+<form action="../indent/addIndent.do" name="frm" method="post">
+
+</form>
+<script type="text/javascript">
+    function changeValue(){
+        //清空名为frm的form的内容
+        $("form[name=frm]").empty();
+        //获得名称为isSelect的所有checkbox
+        var check = $(input[name=isSelect]);
+        var name = document.getElementsByName("name");
+        var price = document.getElementsByName("price");
+        var count = document.getElementsByName("count");
+        var mark = document.getElementsByName("mark");
+        var i=0;
+        var str="";
+        //循环每条记录
+        check.each({
+            //选出checkbox为选中状态的
+            if($(this).attr("checked")==true){
+                //将每个参数都添加到frm这个form中
+                str += "<input type='hidden' name='name' value='"+name[i].value+"'>";
+                str += "<input type='hidden' name='price' value='"+price[i].value+"'>";
+                str += "<input type='hidden' name='count' value='"+count[i].value+"'>";
+                str += "<input type='hidden' name='mark' value='"+mark[i].value+"'>";
+                $("form[name=frm]").append(str);
+            }
+        i++;
+        });
+        $("form[name=frm]").submit();
+    }
+</script>
+</body>
+</html>
